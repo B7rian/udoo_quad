@@ -1,7 +1,7 @@
-defmodule NervesSystemRpi2.MixProject do
+defmodule UdooQuad.MixProject do
   use Mix.Project
 
-  @app :nerves_system_rpi2
+  @app :udoo_quad
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
@@ -26,7 +26,7 @@ defmodule NervesSystemRpi2.MixProject do
   end
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi2")
+    System.put_env("MIX_TARGET", "udoo_quad")
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -34,9 +34,9 @@ defmodule NervesSystemRpi2.MixProject do
   defp nerves_package do
     [
       type: :system,
-      artifact_sites: [
-        {:github_releases, "nerves-project/#{@app}"}
-      ],
+#      artifact_sites: [
+#        {:github_releases, "nerves-project/#{@app}"}
+#      ],
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig"
@@ -57,16 +57,16 @@ defmodule NervesSystemRpi2.MixProject do
 
   defp description do
     """
-    Nerves System - Raspberry Pi 2 B
+    Nerves System - UDOO Quad
     """
   end
 
   defp package do
     [
-      maintainers: ["Frank Hunleth", "Justin Schneck"],
+      maintainers: ["Brian Hughes"],
       files: package_files(),
       licenses: ["Apache 2.0"],
-      links: %{"Github" => "https://github.com/nerves-project/#{@app}"}
+      links: %{"Github" => "https://github.com/b7rian/#{@app}"}
     ]
   end
 
